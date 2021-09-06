@@ -16,6 +16,7 @@ export default {
   position: fixed;
   left: 0;
   bottom: 0;
+  height: 49px;
   width: 100%;
   background-color: #f6f6f6;
   text-align: center;

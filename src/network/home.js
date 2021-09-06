@@ -5,3 +5,15 @@ export function getSwiperData() {
     url: '/home/swiperdata'
   });
 };
+
+export function getCateNavData() {
+  return request({
+    url: '/home/catitems'
+  });
+};
+
+export function getFloorData() {
+  return request({
+    url: '/home/floordata'
+  });
+};
