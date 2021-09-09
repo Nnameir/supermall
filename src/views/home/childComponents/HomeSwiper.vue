@@ -11,6 +11,7 @@
 
 <script>
 import { Swiper, SwiperItem } from "components/common/swiper/index.js";
+
 import { getSwiperData } from "network/home.js";
 
 export default {

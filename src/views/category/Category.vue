@@ -1,12 +1,76 @@
 <template>
-  <h1>Category</h1>
+  <div id="category">
+    <nav-bar class="category-nav-bar">
+      <div slot="center">商品分类</div>
+    </nav-bar>
+    <scroll class="left">
+      <left-menu :leftMenuData="categoryData" @menuclick="updateContent" />
+    </scroll>
+    <right-content class="right" :rightContentData="rightContentData" />
+  </div>
 </template>
 
 <script>
+/* 导入通用组件 */
+import NavBar from "components/common/navbar/NavBar.vue";
+import Scroll from "components/common/scroll/Scroll.vue";
+/* 导入分类组件 */
+import LeftMenu from "./childComponents/LeftMenu.vue";
+import RightContent from "./childComponents/RightContent.vue";
+
+import { getCategoryData } from "network/category.js";
+
 export default {
   name: "Category",
+  data() {
+    return {
+      categoryData: [],
+      rightContentData: [],
+    };
+  },
+  components: {
+    NavBar,
+    Scroll,
+    LeftMenu,
+    RightContent,
+  },
+  created() {
+    getCategoryData().then((res) => {
+      this.categoryData = res.message;
+    });
+  },
+  methods: {
+    updateContent(index) {
+      this.rightContentData = this.categoryData[index].children;
+    },
+  },
 };
 </script>
 
 <style scoped>
+#category {
+  position: relative;
+  padding: 44px 0 49px 0;
+}
+
+.category-nav-bar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  background-color: var(--color-tint);
+  color: #fff;
+}
+
+.left {
+  float: left;
+  width: 25%;
+  height: calc(100vh - 44px - 49px);
+}
+
+.right {
+  float: right;
+  width: 75%;
+  height: calc(100vh - 44px - 49px);
+}
 </style>

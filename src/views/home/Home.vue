@@ -10,20 +10,20 @@
 </template>
 
 <script>
+/* 导入通用组件 */
+import NavBar from "components/common/navbar/NavBar.vue";
 /* 导入主页组件 */
 import HomeSwiper from "./childComponents/HomeSwiper.vue";
 import CateNav from "./childComponents/CateNav.vue";
 import Floor from "./childComponents/floor/Floor.vue";
-/* 导入通用组件 */
-import NavBar from "components/common/navbar/NavBar.vue";
 
 export default {
   name: "Home",
   components: {
+    NavBar,
     HomeSwiper,
     CateNav,
     Floor,
-    NavBar,
   },
 };
 </script>
