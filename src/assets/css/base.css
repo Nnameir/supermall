@@ -5,7 +5,8 @@
   --color-text: #666;
   --color-high-text: #ff5777;
   --color-tint: #ff8198;
-  --color-background: #ebeae6;
+  --color-background: #fff;
+  --color-background-gray: #eee;
   --font-size: 14px;
   --line-height: 1.5;
 }

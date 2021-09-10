@@ -1,8 +1,8 @@
 <template>
   <div class="slide">
     <!-- 每一张 slide 都由 a > img 组成, 只有链接依赖于具体项目 -->
-    <a :href="href_link">
-      <img :src="image_src" alt="" />
+    <a :href="hrefLink">
+      <img :src="imageSrc" alt="" />
     </a>
   </div>
 </template>
@@ -11,11 +11,11 @@
 export default {
   name: "SwiperItem",
   props: {
-    href_link: {
+    hrefLink: {
       type: String,
-      default: "#",
+      default: "",
     },
-    image_src: {
+    imageSrc: {
       type: String,
       default: "",
     },

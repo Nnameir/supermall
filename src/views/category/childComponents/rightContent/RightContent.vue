@@ -1,12 +1,16 @@
 <template>
   <div class="right-content">
-    <div v-for="item in rightContentData" :key="item.cat_id">
-      {{ item.cat_name }}
-    </div>
+    <right-item
+      v-for="item in rightContentData"
+      :key="item.cat_id"
+      :right-item-data="item"
+    ></right-item>
   </div>
 </template>
 
 <script>
+import RightItem from "./RightItem.vue";
+
 export default {
   name: "RightContent",
   props: {
@@ -17,11 +21,11 @@ export default {
       },
     },
   },
+  components: {
+    RightItem,
+  },
 };
 </script>
 
 <style scoped>
-.right-content {
-  background-color: #fff;
-}
 </style>

@@ -4,9 +4,11 @@
       <div slot="center">商品分类</div>
     </nav-bar>
     <scroll class="left">
-      <left-menu :leftMenuData="categoryData" @menuclick="updateContent" />
+      <left-menu :left-menu-data="categoryData" @menu-click="updateContent" />
     </scroll>
-    <right-content class="right" :rightContentData="rightContentData" />
+    <scroll class="right">
+      <right-content :right-content-data="rightContentData" />
+    </scroll>
   </div>
 </template>
 
@@ -16,7 +18,7 @@ import NavBar from "components/common/navbar/NavBar.vue";
 import Scroll from "components/common/scroll/Scroll.vue";
 /* 导入分类组件 */
 import LeftMenu from "./childComponents/LeftMenu.vue";
-import RightContent from "./childComponents/RightContent.vue";
+import RightContent from "./childComponents/rightContent/RightContent.vue";
 
 import { getCategoryData } from "network/category.js";
 
@@ -51,6 +53,7 @@ export default {
 #category {
   position: relative;
   padding: 44px 0 49px 0;
+  color: #000;
 }
 
 .category-nav-bar {

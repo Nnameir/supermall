@@ -13,7 +13,7 @@ export default {
   name: "CateNav",
   data() {
     return {
-      cateItems: null,
+      cateItems: {},
     };
   },
   created() {

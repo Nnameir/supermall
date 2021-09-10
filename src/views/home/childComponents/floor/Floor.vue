@@ -3,8 +3,8 @@
     <floor-item
       v-for="item in floorData"
       :key="item.floor_title.name"
-      :floor_title="item.floor_title"
-      :product_list="item.product_list"
+      :floor-title="item.floor_title"
+      :product-list="item.product_list"
     />
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
   name: "Floor",
   data() {
     return {
-      floorData: null,
+      floorData: {},
     };
   },
   created() {

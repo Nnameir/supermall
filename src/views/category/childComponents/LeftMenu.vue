@@ -14,8 +14,11 @@
 <script>
 export default {
   name: "LeftMenu",
-  beforeUpdate() {
-    this.menuClick(this.initialIndex);
+  mounted() {
+    //请求到数据后触发?
+    setTimeout(() => {
+      this.menuClick(this.initialIndex);
+    }, 3000);
   },
   props: {
     leftMenuData: {
@@ -37,17 +40,20 @@ export default {
   methods: {
     menuClick(index) {
       this.currentIndex = index;
-      this.$emit("menuclick", index);
+      this.$emit("menu-click", index);
     },
   },
 };
 </script>
 
 <style scoped>
+.left-menu {
+  background-color: var(--color-background-gray);
+}
+
 .left-menu div {
   border-left: 3px solid transparent;
   height: 44px;
-  width: 100%;
   line-height: 44px;
   text-align: center;
   box-sizing: border-box;

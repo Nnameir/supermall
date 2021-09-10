@@ -29,6 +29,10 @@ export default {
 </script>
 
 <style scoped>
+#home {
+  background-color: var(--color-background-gray);
+}
+
 .home-nav-bar {
   position: fixed;
   top: 0;

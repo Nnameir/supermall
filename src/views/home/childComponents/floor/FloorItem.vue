@@ -1,10 +1,10 @@
 <template>
   <div class="floor">
-    <img class="floor_title" :src="floor_title.image_src" alt="" />
+    <img class="floor-title" :src="floorTitle.image_src" alt="" />
     <div class="floor-grid-container">
       <a
         class="floor-grid-item"
-        v-for="item in product_list"
+        v-for="item in productList"
         :key="item.name"
         :href="item.navigator_url"
       >
@@ -18,13 +18,13 @@
 export default {
   name: "FloorItem",
   props: {
-    floor_title: {
+    floorTitle: {
       type: Object,
       default() {
-        return null;
+        return {};
       },
     },
-    product_list: {
+    productList: {
       type: Array,
       default() {
         return [];
@@ -39,7 +39,7 @@ export default {
   margin-top: 12px;
 }
 
-.floor_title {
+.floor-title {
   width: 100%;
   margin-bottom: 6px;
 }

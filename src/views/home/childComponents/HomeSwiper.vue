@@ -3,8 +3,8 @@
     <swiper-item
       v-for="item in banners"
       :key="item.goods_id"
-      :href_link="item.navigator_url"
-      :image_src="item.image_src"
+      :href-link="item.navigator_url"
+      :image-src="item.image_src"
     />
   </swiper>
 </template>
@@ -18,7 +18,7 @@ export default {
   name: "HomeSwiper",
   data() {
     return {
-      banners: null,
+      banners: {},
     };
   },
   created() {
