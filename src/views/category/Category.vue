@@ -4,7 +4,11 @@
       <div slot="center">商品分类</div>
     </nav-bar>
     <scroll class="left">
-      <left-menu :left-menu-data="categoryData" @menu-click="updateContent" />
+      <left-menu
+        :left-menu-data="categoryData"
+        :initial-index="initialIndex"
+        @menu-click="updateContent"
+      />
     </scroll>
     <scroll class="right">
       <right-content :right-content-data="rightContentData" />
@@ -27,6 +31,7 @@ export default {
   data() {
     return {
       categoryData: [],
+      initialIndex: 1,
       rightContentData: [],
     };
   },
@@ -39,6 +44,7 @@ export default {
   created() {
     getCategoryData().then((res) => {
       this.categoryData = res.message;
+      this.rightContentData = this.categoryData[this.initialIndex].children;
     });
   },
   methods: {

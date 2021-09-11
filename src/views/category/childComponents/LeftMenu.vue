@@ -1,10 +1,10 @@
 <template>
-  <div class="left-menu">
+  <div class="left-menu" @click="menuClick">
     <div
       v-for="(item, index) in leftMenuData"
       :key="item.cat_id"
       :class="{ active: index === currentIndex }"
-      @click="menuClick(index)"
+      :data-index="index"
     >
       {{ item.cat_name }}
     </div>
@@ -14,11 +14,8 @@
 <script>
 export default {
   name: "LeftMenu",
-  mounted() {
-    //请求到数据后触发?
-    setTimeout(() => {
-      this.menuClick(this.initialIndex);
-    }, 3000);
+  created() {
+    this.currentIndex = this.initialIndex;
   },
   props: {
     leftMenuData: {
@@ -38,7 +35,8 @@ export default {
     };
   },
   methods: {
-    menuClick(index) {
+    menuClick(event) {
+      const index = Number(event.target.getAttribute("data-index"));
       this.currentIndex = index;
       this.$emit("menu-click", index);
     },

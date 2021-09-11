@@ -1,11 +1,19 @@
 <template>
   <div class="right-item">
     <div class="goods-title">{{ rightItemData.cat_name }}</div>
-    <div class="goods-container">
+    <div v-if="rightItemData.children" class="goods-container">
       <div v-for="item in rightItemData.children" :key="item.cat_id">
         <img :src="item.cat_icon" alt="" />
         <div>
           {{ item.cat_name }}
+        </div>
+      </div>
+    </div>
+    <div v-else class="goods-container" :key="rightItemData.cat_id">
+      <div>
+        <img :src="rightItemData.cat_icon" alt="" />
+        <div>
+          {{ rightItemData.cat_name }}
         </div>
       </div>
     </div>
@@ -41,15 +49,21 @@ export default {
 }
 
 .goods-container {
+  --grid-gap: 3vw;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 12px 12px;
-  padding: 0 12px;
-  margin-bottom: 12px;
+  grid-gap: var(--grid-gap);
+  padding: 0 var(--grid-gap) 12px;
   text-align: center;
+  font-size: var(--font-size);
 }
 
 .goods-container img {
   width: 100%;
+  height: calc((75vw - 4 * var(--grid-gap)) / 3);
+}
+
+.goods-container div div {
+  margin-top: 5px;
 }
 </style>
