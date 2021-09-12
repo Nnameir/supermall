@@ -3,14 +3,14 @@
     <nav-bar class="category-nav-bar">
       <div slot="center">商品分类</div>
     </nav-bar>
-    <scroll class="left">
+    <scroll class="left" :bounce="{ top: false, bottom: false }">
       <left-menu
         :left-menu-data="categoryData"
         :initial-index="initialIndex"
         @menu-click="updateContent"
       />
     </scroll>
-    <scroll class="right">
+    <scroll ref="right-scroll" class="right">
       <right-content :right-content-data="rightContentData" />
     </scroll>
   </div>
@@ -20,7 +20,7 @@
 /* 导入通用组件 */
 import NavBar from "components/common/navbar/NavBar.vue";
 import Scroll from "components/common/scroll/Scroll.vue";
-/* 导入分类组件 */
+/* 导入专用组件 */
 import LeftMenu from "./childComponents/LeftMenu.vue";
 import RightContent from "./childComponents/rightContent/RightContent.vue";
 
@@ -49,6 +49,7 @@ export default {
   },
   methods: {
     updateContent(index) {
+      this.$refs["right-scroll"].scrollTo(0, 0, 0);
       this.rightContentData = this.categoryData[index].children;
     },
   },

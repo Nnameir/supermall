@@ -12,7 +12,7 @@
 <script>
 /* 导入通用组件 */
 import NavBar from "components/common/navbar/NavBar.vue";
-/* 导入主页组件 */
+/* 导入专用组件 */
 import HomeSwiper from "./childComponents/HomeSwiper.vue";
 import CateNav from "./childComponents/CateNav.vue";
 import Floor from "./childComponents/floor/Floor.vue";

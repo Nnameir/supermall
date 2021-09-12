@@ -2,14 +2,23 @@
   <div class="right-item">
     <div class="goods-title">{{ rightItemData.cat_name }}</div>
     <div v-if="rightItemData.children" class="goods-container">
-      <div v-for="item in rightItemData.children" :key="item.cat_id">
+      <div
+        v-for="item in rightItemData.children"
+        :key="item.cat_id"
+        :cat-id="item.cat_id"
+      >
         <img :src="item.cat_icon" alt="" />
         <div>
           {{ item.cat_name }}
         </div>
       </div>
     </div>
-    <div v-else class="goods-container" :key="rightItemData.cat_id">
+    <div
+      v-else
+      class="goods-container"
+      :key="rightItemData.cat_id"
+      :cat-id="rightItemData.cat_id"
+    >
       <div>
         <img :src="rightItemData.cat_icon" alt="" />
         <div>

@@ -18,4 +18,4 @@ export function request(config) {
     return err;
   });
   return axiosInstance(config);
-}
+};
