@@ -13,13 +13,22 @@ export default {
   name: "Scroll",
   mounted() {
     this.scroll = new BScroll(this.$refs.wraper, {
-      // probeType 探测类型, 0/1/2/3
+      // probeType 探测类型, 0(默认值)/1(非实时, 滚动超过一定时间之后派发滚动事件)/2(手指滚动屏幕的实时派发滚动事件)/3(内容滚动的实时派发滚动事件)
       probeType: this.probeType,
       // click 设定是否允许滚动区域中非按钮元素的点击事件
       click: this.click,
+      // pullUpLoad 设定是否允许上拉加载, 必须调用 finishPullUp 之后才可以进行下一次上拉加载
       pullUpLoad: this.pullUpLoad,
       // bounce 设定是否添加回弹动画
       bounce: this.bounce,
+    });
+    // 监听滚动事件, 回调函数的第一个参数是滚动的位置
+    this.scroll.on("scroll", (position) => {
+      this.$emit("scroll", position);
+    });
+    // 监听上拉事件
+    this.scroll.on("pullingUp", () => {
+      this.$emit("pulling-up");
     });
   },
   props: {
@@ -33,7 +42,7 @@ export default {
     },
     pullUpLoad: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     bounce: {
       type: Object,
@@ -53,8 +62,11 @@ export default {
     };
   },
   methods: {
-    scrollTo(x, y, time) {
+    scrollTo(x, y, time = 300) {
       this.scroll.scrollTo(x, y, time);
+    },
+    finishPullUp() {
+      this.scroll.finishPullUp();
     },
   },
 };

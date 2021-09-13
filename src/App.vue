@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <keep-alive exclude="GoodsList">
-      <router-view></router-view>
+      <router-view />
     </keep-alive>
-    <main-tab-bar></main-tab-bar>
+    <main-tab-bar v-if="$route.path !== '/goodslist'" />
   </div>
 </template>
 

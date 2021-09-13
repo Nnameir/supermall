@@ -1,25 +1,23 @@
 <template>
-  <div class="goods-list">
-    <div v-for="item in goods" :key="item.goods_id" class="goods">
-      <div>
-        <img :src="item.goods_big_logo" alt="" />
-      </div>
-      <div>
-        <p>{{ item.goods_name }}</p>
-        <span>￥{{ item.goods_price }}</span>
-      </div>
+  <div class="goods">
+    <div>
+      <img :src="goods.goods_big_logo" alt="" />
+    </div>
+    <div>
+      <p>{{ goods.goods_name }}</p>
+      <span>￥{{ goods.goods_price }}</span>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "GoodsListContent",
+  name: "GoodsListItem",
   props: {
     goods: {
-      type: Array,
+      type: Object,
       default() {
-        return [];
+        return {};
       },
     },
   },
@@ -27,11 +25,6 @@ export default {
 </script>
 
 <style scoped>
-.goods-list {
-  margin-top: 84px;
-  color: #000;
-}
-
 .goods {
   height: 35vw;
   border-bottom: 2px solid var(--color-background-gray);
