@@ -14,9 +14,6 @@
 <script>
 export default {
   name: "LeftMenu",
-  created() {
-    this.currentIndex = this.initialIndex;
-  },
   props: {
     leftMenuData: {
       type: Array,
@@ -33,6 +30,9 @@ export default {
     return {
       currentIndex: 0,
     };
+  },
+  created() {
+    this.currentIndex = this.initialIndex;
   },
   methods: {
     menuClick(event) {

@@ -8,6 +8,7 @@
 </template>
 
 <script>
+/* 导入通用组件 */
 import MainTabBar from "components/content/mainTabBar/MainTabBar.vue";
 
 export default {

@@ -14,7 +14,7 @@
         v-for="index in slideCount"
         :key="index"
         :class="{ active: index === currentIndex }"
-      ></div>
+      />
     </div>
   </div>
 </template>

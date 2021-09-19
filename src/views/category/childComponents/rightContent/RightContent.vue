@@ -9,6 +9,7 @@
 </template>
 
 <script>
+/* 导入专用组件 */
 import RightItem from "./RightItem.vue";
 
 export default {

@@ -10,25 +10,31 @@
 </template>
 
 <script>
+/* 导入通用组件 */
 import { Swiper, SwiperItem } from "components/common/swiper/index.js";
-
+/* 导入网络请求方法 */
 import { getSwiperData } from "network/home.js";
 
 export default {
   name: "HomeSwiper",
+  components: {
+    Swiper,
+    SwiperItem,
+  },
   data() {
     return {
       banners: {},
     };
   },
   created() {
-    getSwiperData().then((res) => {
-      this.banners = res.message;
-    });
+    this.getSwiperData();
   },
-  components: {
-    Swiper,
-    SwiperItem,
+  methods: {
+    getSwiperData() {
+      getSwiperData().then((res) => {
+        this.banners = res.message;
+      });
+    },
   },
 };
 </script>

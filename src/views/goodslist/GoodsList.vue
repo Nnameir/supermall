@@ -24,14 +24,19 @@ import BackTop from "components/content/backTop/BackTop.vue";
 /* 导入专用组件 */
 import GoodsListNavBar from "./childComponents/GoodsListNavBar.vue";
 import GoodsListContent from "./childComponents/GoodsListContent/GoodsListContent.vue";
-
+/* 导入工具 */
+import { debounce } from "common/utils.js";
+/* 导入网络请求方法 */
 import { getGoodsList } from "network/goodslist.js";
 
 export default {
   name: "GoodsList",
-  created() {
-    this.cid = this.$route.query.cid;
-    this.updateGoodsList();
+  components: {
+    TabControl,
+    Scroll,
+    BackTop,
+    GoodsListNavBar,
+    GoodsListContent,
   },
   data() {
     return {
@@ -42,6 +47,18 @@ export default {
       total: 0,
       isShow: false,
     };
+  },
+  created() {
+    this.cid = this.$route.query.cid;
+    this.updateGoodsList();
+  },
+  mounted() {
+    const refresh = this.$refs.scroll.refresh;
+    this.$bus.$on("goodsImageLoaded", debounce(refresh, 200));
+  },
+  beforeDestroy() {
+    // 移除事件监听器
+    this.$bus.$off("goodsImageLoaded");
   },
   methods: {
     updateGoodsList() {
@@ -64,13 +81,6 @@ export default {
     backTopClick() {
       this.$refs.scroll.scrollTo(0, 0);
     },
-  },
-  components: {
-    TabControl,
-    Scroll,
-    BackTop,
-    GoodsListNavBar,
-    GoodsListContent,
   },
 };
 </script>

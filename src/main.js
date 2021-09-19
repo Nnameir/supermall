@@ -1,10 +1,12 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
+import Vue from 'vue';
+import App from './App.vue';
+import router from './router';
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+// 事件总线上的事件处理函数的默认环境是 $bus
+Vue.prototype.$bus = new Vue();
 
 new Vue({
   render: h => h(App),
   router
-}).$mount('#app')
+}).$mount('#app');

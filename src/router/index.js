@@ -33,7 +33,8 @@ const routes = [
 
 const router = new VueRouter({
   routes,
-  mode: 'history'
+  // vue.config.js 中配置 publicPath 时只能适用于 hash 模式
+  // mode: 'history'
 });
 
 export default router;

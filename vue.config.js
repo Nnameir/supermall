@@ -1,5 +1,5 @@
 module.exports = {
-  // publicPath: './',
+  publicPath: process.env.NODE_ENV === 'production' ? '' : '/',
   configureWebpack: {
     resolve: {
       alias: { // 配置别名

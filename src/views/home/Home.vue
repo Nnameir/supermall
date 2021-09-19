@@ -3,9 +3,9 @@
     <nav-bar class="home-nav-bar">
       <div slot="center">购物广场</div>
     </nav-bar>
-    <home-swiper class="home-swiper"></home-swiper>
-    <cate-nav></cate-nav>
-    <floor class="home-floor"></floor>
+    <home-swiper class="home-swiper" />
+    <cate-nav />
+    <floor class="home-floor" />
   </div>
 </template>
 

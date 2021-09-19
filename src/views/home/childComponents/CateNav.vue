@@ -7,6 +7,7 @@
 </template>
 
 <script>
+/* 导入网络请求方法 */
 import { getCateNavData } from "network/home.js";
 
 export default {
@@ -17,9 +18,14 @@ export default {
     };
   },
   created() {
-    getCateNavData().then((res) => {
-      this.cateItems = res.message;
-    });
+    this.getCateNavData();
+  },
+  methods: {
+    getCateNavData() {
+      getCateNavData().then((res) => {
+        this.cateItems = res.message;
+      });
+    },
   },
 };
 </script>

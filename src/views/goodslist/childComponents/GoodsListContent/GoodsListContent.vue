@@ -9,10 +9,14 @@
 </template>
 
 <script>
+/* 导入专用组件 */
 import GoodsListItem from "./GoodsListItem.vue";
 
 export default {
   name: "GoodsListContent",
+  components: {
+    GoodsListItem,
+  },
   props: {
     goodsList: {
       type: Array,
@@ -20,9 +24,6 @@ export default {
         return [];
       },
     },
-  },
-  components: {
-    GoodsListItem,
   },
 };
 </script>

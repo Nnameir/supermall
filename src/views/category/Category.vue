@@ -23,11 +23,17 @@ import Scroll from "components/common/scroll/Scroll.vue";
 /* 导入专用组件 */
 import LeftMenu from "./childComponents/LeftMenu.vue";
 import RightContent from "./childComponents/rightContent/RightContent.vue";
-
+/* 导入网络请求方法 */
 import { getCategoryData } from "network/category.js";
 
 export default {
   name: "Category",
+  components: {
+    NavBar,
+    Scroll,
+    LeftMenu,
+    RightContent,
+  },
   data() {
     return {
       categoryData: [],
@@ -35,19 +41,16 @@ export default {
       rightContentData: [],
     };
   },
-  components: {
-    NavBar,
-    Scroll,
-    LeftMenu,
-    RightContent,
-  },
   created() {
-    getCategoryData().then((res) => {
-      this.categoryData = res.message;
-      this.rightContentData = this.categoryData[this.initialIndex].children;
-    });
+    this.getCategoryData();
   },
   methods: {
+    getCategoryData() {
+      getCategoryData().then((res) => {
+        this.categoryData = res.message;
+        this.rightContentData = this.categoryData[this.initialIndex].children;
+      });
+    },
     updateContent(index) {
       this.$refs["right-scroll"].scrollTo(0, 0, 0);
       this.rightContentData = this.categoryData[index].children;

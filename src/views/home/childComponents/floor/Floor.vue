@@ -10,23 +10,30 @@
 </template>
 
 <script>
-import { getFloorData } from "network/home.js";
+/* 导入专用组件 */
 import FloorItem from "./FloorItem.vue";
+/* 导入网络请求方法 */
+import { getFloorData } from "network/home.js";
 
 export default {
   name: "Floor",
+  components: {
+    FloorItem,
+  },
   data() {
     return {
       floorData: {},
     };
   },
   created() {
-    getFloorData().then((res) => {
-      this.floorData = res.message;
-    });
+    this.getFloorData();
   },
-  components: {
-    FloorItem,
+  methods: {
+    getFloorData() {
+      getFloorData().then((res) => {
+        this.floorData = res.message;
+      });
+    },
   },
 };
 </script>

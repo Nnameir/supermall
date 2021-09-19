@@ -10,6 +10,7 @@
 </template>
 
 <script>
+/* 导入通用组件 */
 import NavBar from "components/common/navbar/NavBar.vue";
 
 export default {
