@@ -1,5 +1,5 @@
 <template>
-  <div id="zhu-swiper">
+  <div class="zhu-swiper" ref="zhuSwiper">
     <div
       class="swiper"
       @touchstart="touchEventHandlers"
@@ -25,6 +25,11 @@ import { animationMove } from "common/animation.js";
 export default {
   name: "Swiper",
   props: {
+    isLoaded: {
+      type: Boolean,
+      default: false,
+      required: true,
+    },
     swiperInterval: {
       type: Number,
       default: 3000,
@@ -48,6 +53,7 @@ export default {
   },
   data() {
     return {
+      isInit: false, // 用于记录 swiper 是否已经初始化
       slideCount: 0,
       slideWidth: 0,
       swiperElement: null,
@@ -57,17 +63,23 @@ export default {
       startX: undefined, // startX 为 undefined 表示未开始触摸
     };
   },
-  mounted() {
-    setTimeout(() => {
-      // 网络请求慢？
-      this.insertDom();
-      this.startSwiper();
-    }, 2000);
+  watch: {
+    isLoaded() {
+      if (!this.isInit && this.isLoaded) {
+        this.isInit = true;
+        this.initSwiper();
+      }
+    },
   },
   methods: {
+    /* 初始化 swiper, 当图片加载完毕时, 调用该方法 */
+    initSwiper() {
+      this.insertDom();
+      this.startSwiper();
+    },
     // 只有一幅slide？
     insertDom() {
-      const zhuSwiper = document.querySelector("#zhu-swiper");
+      const zhuSwiper = this.$refs.zhuSwiper;
       this.swiperElement = zhuSwiper.querySelector(".swiper");
       const tempSwiper = this.swiperElement;
       zhuSwiper.style.height = tempSwiper.offsetHeight + "px";
@@ -163,7 +175,7 @@ export default {
 </script>
 
 <style scoped>
-#zhu-swiper {
+.zhu-swiper {
   overflow: hidden;
   position: relative;
 }

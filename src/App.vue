@@ -3,7 +3,7 @@
     <keep-alive exclude="GoodsList">
       <router-view />
     </keep-alive>
-    <main-tab-bar v-if="$route.path !== '/goodslist'" />
+    <main-tab-bar v-show="$route.path !== '/goodslist'" />
   </div>
 </template>
 

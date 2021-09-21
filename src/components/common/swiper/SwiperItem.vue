@@ -2,7 +2,7 @@
   <div class="slide">
     <!-- 每一张 slide 都由 a > img 组成, 只有链接依赖于具体项目 -->
     <a :href="hrefLink">
-      <img :src="imageSrc" alt="" />
+      <img :src="imageSrc" alt="" @load="imageLoaded" />
     </a>
   </div>
 </template>
@@ -18,6 +18,11 @@ export default {
     imageSrc: {
       type: String,
       default: "",
+    },
+  },
+  methods: {
+    imageLoaded() {
+      this.$emit("image-loaded");
     },
   },
 };

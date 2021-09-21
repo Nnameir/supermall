@@ -14,6 +14,9 @@ import RightItem from "./RightItem.vue";
 
 export default {
   name: "RightContent",
+  components: {
+    RightItem,
+  },
   props: {
     rightContentData: {
       type: Array,
@@ -21,9 +24,6 @@ export default {
         return [];
       },
     },
-  },
-  components: {
-    RightItem,
   },
   methods: {
     goodsClick(event) {

@@ -61,14 +61,11 @@ export default {
 
 <style scoped>
 #category {
-  position: relative;
-  padding: 44px 0 49px 0;
   color: #000;
 }
 
 .category-nav-bar {
-  position: fixed;
-  top: 0;
+  position: relative;
   width: 100%;
   z-index: 999;
   background-color: var(--color-tint);

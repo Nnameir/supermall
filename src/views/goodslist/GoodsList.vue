@@ -24,8 +24,6 @@ import BackTop from "components/content/backTop/BackTop.vue";
 /* 导入专用组件 */
 import GoodsListNavBar from "./childComponents/GoodsListNavBar.vue";
 import GoodsListContent from "./childComponents/GoodsListContent/GoodsListContent.vue";
-/* 导入工具 */
-import { debounce } from "common/utils.js";
 /* 导入网络请求方法 */
 import { getGoodsList } from "network/goodslist.js";
 
@@ -52,18 +50,10 @@ export default {
     this.cid = this.$route.query.cid;
     this.updateGoodsList();
   },
-  mounted() {
-    const refresh = this.$refs.scroll.refresh;
-    this.$bus.$on("goodsImageLoaded", debounce(refresh, 200));
-  },
-  beforeDestroy() {
-    // 移除事件监听器
-    this.$bus.$off("goodsImageLoaded");
-  },
   methods: {
     updateGoodsList() {
       this.pagenum++;
-      getGoodsList(this.cid, this.pagenum).then((res) => {
+      return getGoodsList(this.cid, this.pagenum).then((res) => {
         const message = res.message;
         this.goodsList.push(...message.goods);
         this.total = message.total;
@@ -74,8 +64,9 @@ export default {
     },
     pullingUpCallback() {
       if (this.goodsList.length < this.total) {
-        this.updateGoodsList();
-        this.$refs.scroll.finishPullUp();
+        this.updateGoodsList().then(() => {
+          this.$refs.scroll.finishPullUp();
+        });
       }
     },
     backTopClick() {

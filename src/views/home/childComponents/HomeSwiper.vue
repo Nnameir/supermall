@@ -1,10 +1,11 @@
 <template>
-  <swiper>
+  <swiper :is-loaded="isLoaded">
     <swiper-item
       v-for="item in banners"
       :key="item.goods_id"
       :href-link="item.navigator_url"
       :image-src="item.image_src"
+      @image-loaded="isLoaded = true"
     />
   </swiper>
 </template>
@@ -24,6 +25,7 @@ export default {
   data() {
     return {
       banners: {},
+      isLoaded: false,
     };
   },
   created() {
