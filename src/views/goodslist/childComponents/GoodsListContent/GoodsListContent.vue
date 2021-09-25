@@ -1,5 +1,5 @@
 <template>
-  <div class="goods-list">
+  <div class="goods-list" @click="goodsClick">
     <goods-list-item
       v-for="goods in goodsList"
       :key="goods.goods_id"
@@ -23,6 +23,18 @@ export default {
       default() {
         return [];
       },
+    },
+  },
+  methods: {
+    goodsClick(event) {
+      const targetGoods = event.target.closest("[goods-id]");
+      const goodsId = targetGoods.getAttribute("goods-id");
+      this.$router.push({
+        path: "/detail",
+        query: {
+          goods_id: goodsId,
+        },
+      });
     },
   },
 };

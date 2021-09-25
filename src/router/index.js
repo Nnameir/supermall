@@ -6,6 +6,7 @@ const Category = () => import('views/category/Category.vue');
 const Shopcart = () => import('views/shopcart/Shopcart.vue');
 const Profile = () => import('views/profile/Profile.vue');
 const GoodsList = () => import('views/goodslist/GoodsList.vue');
+const Detail = () => import('views/detail/Detail.vue');
 
 Vue.use(VueRouter);
 
@@ -28,6 +29,9 @@ const routes = [
   }, {
     path: '/goodslist',
     component: GoodsList
+  }, {
+    path: '/detail',
+    component: Detail
   }
 ];
 

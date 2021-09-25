@@ -12,7 +12,7 @@
     >
       <goods-list-content :goods-list="goodsList" />
     </scroll>
-    <back-top v-show="isShow" @click.native="backTopClick" />
+    <back-top v-show="isShowBackTop" @click.native="backTopClick" />
   </div>
 </template>
 
@@ -20,10 +20,11 @@
 /* 导入通用组件 */
 import TabControl from "components/content/tabControl/TabControl.vue";
 import Scroll from "components/common/scroll/Scroll.vue";
-import BackTop from "components/content/backTop/BackTop.vue";
 /* 导入专用组件 */
 import GoodsListNavBar from "./childComponents/GoodsListNavBar.vue";
 import GoodsListContent from "./childComponents/GoodsListContent/GoodsListContent.vue";
+/* 导入混入对象 */
+import { backTopMixin } from "common/mixin.js";
 /* 导入网络请求方法 */
 import { getGoodsList } from "network/goodslist.js";
 
@@ -32,10 +33,10 @@ export default {
   components: {
     TabControl,
     Scroll,
-    BackTop,
     GoodsListNavBar,
     GoodsListContent,
   },
+  mixins: [backTopMixin],
   data() {
     return {
       cid: 0,
@@ -43,7 +44,6 @@ export default {
       tabControlTitle: ["综合", "销量", "价格"],
       goodsList: [],
       total: 0,
-      isShow: false,
     };
   },
   created() {
@@ -60,7 +60,7 @@ export default {
       });
     },
     scrollCallback(position) {
-      this.isShow = -position.y > 600;
+      this.getIsShowBackTop(position);
     },
     pullingUpCallback() {
       if (this.goodsList.length < this.total) {
@@ -69,22 +69,12 @@ export default {
         });
       }
     },
-    backTopClick() {
-      this.$refs.scroll.scrollTo(0, 0);
-    },
   },
 };
 </script>
 
 <style scoped>
-.goods-list-tab-control {
-  position: fixed;
-  top: 44px;
-  z-index: 999;
-}
-
 .goods-list-content {
-  margin-top: 84px;
   height: calc(100vh - 44px - 40px);
 }
 </style>

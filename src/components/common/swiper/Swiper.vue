@@ -14,6 +14,7 @@
         v-for="index in slideCount"
         :key="index"
         :class="{ active: index === currentIndex }"
+        :style="{ 'background-color': indicatorColor }"
       />
     </div>
   </div>
@@ -49,6 +50,10 @@ export default {
     showIndicator: {
       type: Boolean,
       default: true,
+    },
+    indicatorColor: {
+      type: String,
+      default: "#fff",
     },
   },
   data() {
@@ -198,12 +203,11 @@ export default {
   width: 8px;
   height: 8px;
   margin: 0 5px;
-  background-color: #fff;
   border-radius: 50%;
 }
 
 .active {
-  background-color: rgba(212, 62, 46, 1);
+  background-color: rgba(212, 62, 46, 1) !important;
   box-shadow: 0 0 3px 3px rgba(212, 62, 46, 0.7);
 }
 </style>

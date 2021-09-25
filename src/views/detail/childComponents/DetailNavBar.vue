@@ -1,7 +1,7 @@
 <template>
   <div>
     <goods-nav-bar>
-      <div slot="center">商品列表</div>
+      <div slot="center">商品详情</div>
     </goods-nav-bar>
   </div>
 </template>
@@ -11,7 +11,7 @@
 import GoodsNavBar from "components/content/goodsNavBar/GoodsNavBar.vue";
 
 export default {
-  name: "GoodsListNavBar",
+  name: "DetailNavBar",
   components: {
     GoodsNavBar,
   },

@@ -1,10 +1,10 @@
 <template>
-  <div class="goods">
+  <div class="goods" :goods-id="goods.goods_id">
     <div>
       <img :src="goods.goods_big_logo" alt="" />
     </div>
     <div>
-      <p>{{ goods.goods_name }}</p>
+      <p class="multi-line-overflow">{{ goods.goods_name }}</p>
       <span>￥{{ goods.goods_price }}</span>
     </div>
   </div>
@@ -30,6 +30,10 @@ export default {
   border-bottom: 2px solid var(--color-background-gray);
 }
 
+.goods:hover {
+  background-color: #ddd;
+}
+
 .goods > div {
   float: left;
 }
@@ -49,14 +53,6 @@ export default {
 .goods-list img {
   width: 100%;
   vertical-align: middle;
-}
-
-.goods-list p {
-  overflow: hidden;
-  display: -webkit-box;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
 }
 
 .goods span {

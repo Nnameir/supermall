@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <keep-alive exclude="GoodsList">
+    <keep-alive :exclude="/GoodsList|Detail/">
       <router-view />
     </keep-alive>
-    <main-tab-bar v-show="$route.path !== '/goodslist'" />
+    <main-tab-bar v-show="allowedPath.includes($route.path)" />
   </div>
 </template>
 
@@ -15,6 +15,11 @@ export default {
   name: "App",
   components: {
     MainTabBar,
+  },
+  data() {
+    return {
+      allowedPath: ["/home", "/category", "/shopcart", "/profile"],
+    };
   },
 };
 </script>
