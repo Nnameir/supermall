@@ -1,25 +1,26 @@
 <template>
   <div class="detail-base-info clear-fix">
-    <span class="goods-price">￥ {{ goodsBaseInfo.goods_price }}</span>
+    <span class="goods-price">￥ {{ goodsBaseInfo.goodsPrice }}</span>
     <div class="collect">
       <img src="~assets/img/common/collect.svg" alt="" />
       收藏
     </div>
     <p class="goods-base-info multi-line-overflow">
-      {{ goodsBaseInfo.goods_name }}
+      {{ goodsBaseInfo.goodsName }}
     </p>
   </div>
 </template>
 
 <script>
+/* 导入数据类 */
+import { GoodsBaseInfo } from "network/detail.js";
+
 export default {
   name: "DetailBaseInfo",
   props: {
     goodsBaseInfo: {
-      type: Object,
-      default() {
-        return {};
-      },
+      type: GoodsBaseInfo,
+      required: true,
     },
   },
 };

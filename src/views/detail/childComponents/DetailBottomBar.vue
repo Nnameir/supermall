@@ -1,7 +1,7 @@
 <template>
   <div class="detail-bottom-bar">
     <div class="buy-it">立即购买</div>
-    <div class="add-to-shopcart">加入购物车</div>
+    <div class="add-to-shopcart" @click="addToShopcart">加入购物车</div>
     <div class="bar-container">
       <div>
         <i></i>
@@ -11,7 +11,7 @@
         <i></i>
         <span>店铺</span>
       </div>
-      <div>
+      <div @click="goToShopcart">
         <img src="~assets/img/detail/cart.png" alt="" />
         <span>购物车</span>
       </div>
@@ -20,8 +20,25 @@
 </template>
 
 <script>
+/* 导入数据类 */
+import { CartGoodsInfo } from "network/detail.js";
+
 export default {
   name: "DetailBottomBar",
+  props: {
+    cartGoodsInfo: {
+      type: CartGoodsInfo,
+      required: true,
+    },
+  },
+  methods: {
+    goToShopcart() {
+      this.$router.push("/shopcart");
+    },
+    addToShopcart() {
+      this.$store.dispatch("addToShopcart", this.cartGoodsInfo);
+    },
+  },
 };
 </script>
 

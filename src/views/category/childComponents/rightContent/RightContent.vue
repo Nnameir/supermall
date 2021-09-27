@@ -27,8 +27,9 @@ export default {
   },
   methods: {
     goodsClick(event) {
-      let catId = event.target.parentNode.getAttribute("cat-id");
-      if (catId || (catId = event.target.getAttribute("cat-id"))) {
+      const targetDOM = event.target.closest("[cat-id]");
+      if (targetDOM) {
+        const catId = targetDOM.getAttribute("cat-id");
         this.$router.push({
           path: "/goodslist",
           query: {

@@ -1,11 +1,11 @@
 <template>
   <div class="goods" :goods-id="goods.goods_id">
-    <div>
-      <img :src="goods.goods_big_logo" alt="" />
+    <div class="goods-logo">
+      <img :src="goods.goods_small_logo" alt="" />
     </div>
-    <div>
+    <div class="goods-info">
       <p class="multi-line-overflow">{{ goods.goods_name }}</p>
-      <span>￥{{ goods.goods_price }}</span>
+      <span class="goods-price">￥{{ goods.goods_price }}</span>
     </div>
   </div>
 </template>
@@ -36,29 +36,30 @@ export default {
 
 .goods > div {
   float: left;
+  height: 100%;
 }
 
-.goods > div:nth-child(1) {
+.goods-logo {
   width: 35vw;
   padding: 8px 8px 8px 16px;
 }
 
-.goods > div:nth-child(2) {
+.goods-logo img {
+  width: 100%;
+  vertical-align: middle;
+}
+
+.goods-info {
   position: relative;
   width: 65vw;
   height: 100%;
   padding: 16px 8px 0 12px;
 }
 
-.goods-list img {
-  width: 100%;
-  vertical-align: middle;
-}
-
-.goods span {
+.goods-price {
   position: absolute;
   left: 8px;
-  bottom: 6vw;
+  bottom: 3vw;
   font-size: 18px;
   color: rgb(212, 33, 27);
 }

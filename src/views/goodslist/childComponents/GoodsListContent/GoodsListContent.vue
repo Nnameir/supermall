@@ -32,7 +32,7 @@ export default {
       this.$router.push({
         path: "/detail",
         query: {
-          goods_id: goodsId,
+          goodsId,
         },
       });
     },

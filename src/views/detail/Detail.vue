@@ -14,7 +14,7 @@
       <detail-base-info :goods-base-info="goodsBaseInfo" />
       <detail-goods-info :goods-info="goodsInfo" />
     </scroll>
-    <detail-bottom-bar />
+    <detail-bottom-bar :cart-goods-info="cartGoodsInfo" />
     <back-top v-show="isShowBackTop" @click.native="backTopClick" />
   </div>
 </template>
@@ -31,7 +31,11 @@ import DetailBottomBar from "./childComponents/DetailBottomBar.vue";
 /* 导入混入对象 */
 import { backTopMixin } from "common/mixin.js";
 /* 导入网络请求方法 */
-import { getGoodsDetail, goodsBaseInfo } from "network/detail.js";
+import {
+  getGoodsDetail,
+  GoodsBaseInfo,
+  CartGoodsInfo,
+} from "network/detail.js";
 
 export default {
   name: "Detail",
@@ -46,23 +50,25 @@ export default {
   mixins: [backTopMixin],
   data() {
     return {
-      goods_id: undefined,
+      goodsId: undefined,
       goodsSwiperData: [],
-      goodsBaseInfo: {},
+      goodsBaseInfo: new GoodsBaseInfo({}),
       goodsInfo: "",
+      cartGoodsInfo: new CartGoodsInfo({}),
     };
   },
   created() {
-    this.goods_id = this.$route.query.goods_id;
+    this.goodsId = this.$route.query.goodsId;
     this.getGoodsDetail();
   },
   methods: {
     getGoodsDetail() {
-      getGoodsDetail(this.goods_id).then((res) => {
+      getGoodsDetail(this.goodsId).then((res) => {
         const message = res.message;
         this.goodsSwiperData = message.pics;
-        this.goodsBaseInfo = new goodsBaseInfo(message);
+        this.goodsBaseInfo = new GoodsBaseInfo(message);
         this.goodsInfo = message.goods_introduce;
+        this.cartGoodsInfo = new CartGoodsInfo(message);
       });
     },
     scrollCallback(position) {
