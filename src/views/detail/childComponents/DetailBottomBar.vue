@@ -36,7 +36,9 @@ export default {
       this.$router.push("/shopcart");
     },
     addToShopcart() {
-      this.$store.dispatch("addToShopcart", this.cartGoodsInfo);
+      this.$store.dispatch("addToShopcart", this.cartGoodsInfo).then(() => {
+        this.$toast.show("已成功加入购物车");
+      });
     },
   },
 };

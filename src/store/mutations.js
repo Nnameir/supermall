@@ -1,4 +1,11 @@
-import { ADD_NEW_GOODS, ADD_COUNTER, CHECKED_TOGGLE, SELECT_ALL_TOGGLE } from './mutation-types.js';
+import {
+  ADD_NEW_GOODS,
+  ADD_COUNTER,
+  CHECKED_TOGGLE,
+  SELECT_ALL_TOGGLE,
+  GOODS_DECREMENT,
+  GOODS_INCREMENT
+} from './mutation-types.js';
 import Vue from "vue";
 
 export default {
@@ -20,5 +27,22 @@ export default {
     shopcart.forEach((goods) => {
       goods.checked = isSelect;
     });
+  },
+  [GOODS_DECREMENT](state, goodsId) {
+    const { shopcart, shopcartHashMap } = state;
+    const goodsIndex = shopcartHashMap[goodsId];
+    const currentCount = --shopcart[goodsIndex].goodsCount;
+    if (currentCount === 0) {
+      shopcart.splice(goodsIndex, 1);
+      delete shopcartHashMap[goodsId];
+      for (let index = goodsIndex; index < shopcart.length; index++) {
+        let goods = shopcart[index];
+        shopcartHashMap[goods.goodsId] = index;
+      }
+    }
+  },
+  [GOODS_INCREMENT](state, goodsId) {
+    const goodsIndex = state.shopcartHashMap[goodsId];
+    state.shopcart[goodsIndex].goodsCount++;
   }
 };

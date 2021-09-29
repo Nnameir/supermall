@@ -12,6 +12,11 @@
     <div class="goods-info">
       <p class="multi-line-overflow">{{ cartGoodsInfo.goodsName }}</p>
       <span class="goods-price">￥{{ cartGoodsInfo.goodsPrice }}</span>
+      <div class="countBtn">
+        <div class="decrement" @click="decrement">-</div>
+        <span class="goods-count">{{ cartGoodsInfo.goodsCount }}</span>
+        <div class="increment" @click="increment">+</div>
+      </div>
     </div>
   </div>
 </template>
@@ -20,7 +25,11 @@
 /* 导入通用组件 */
 import CheckButton from "components/content/checkButton/CheckButton.vue";
 /* 导入 mutation 类型 */
-import { CHECKED_TOGGLE } from "store/mutation-types.js";
+import {
+  CHECKED_TOGGLE,
+  GOODS_DECREMENT,
+  GOODS_INCREMENT,
+} from "store/mutation-types.js";
 
 export default {
   name: "ShopcartListItem",
@@ -36,6 +45,12 @@ export default {
   methods: {
     checkButtonClick() {
       this.$store.commit(CHECKED_TOGGLE, this.cartGoodsInfo.goodsId);
+    },
+    decrement() {
+      this.$store.commit(GOODS_DECREMENT, this.cartGoodsInfo.goodsId);
+    },
+    increment() {
+      this.$store.commit(GOODS_INCREMENT, this.cartGoodsInfo.goodsId);
     },
   },
 };
@@ -93,5 +108,29 @@ export default {
   bottom: 3vw;
   font-size: 18px;
   color: rgb(212, 33, 27);
+}
+
+.countBtn {
+  position: absolute;
+  bottom: 3vw;
+  right: 8px;
+}
+
+.countBtn .decrement,
+.countBtn .increment {
+  display: inline-block;
+  border: 1px solid #666;
+  background-color: #ccc;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  color: #000;
+  border-radius: 3px;
+}
+
+.countBtn .goods-count {
+  display: inline-block;
+  width: 24px;
+  text-align: center;
 }
 </style>

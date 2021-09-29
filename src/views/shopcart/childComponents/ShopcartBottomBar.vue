@@ -5,7 +5,9 @@
       全选
     </div>
     <div class="totalPrice">合计: ￥{{ totalPrice }}</div>
-    <div class="settlement">结算 ({{ settledCount }})</div>
+    <div class="settlement" @click="settlementClick">
+      结算 ({{ settledCount }})
+    </div>
   </div>
 </template>
 
@@ -45,6 +47,9 @@ export default {
     checkButtonClick() {
       const isSelect = !this.isSelectAll;
       this.$store.commit(SELECT_ALL_TOGGLE, isSelect);
+    },
+    settlementClick() {
+      this.$toast.show("尚无结算页面");
     },
   },
 };

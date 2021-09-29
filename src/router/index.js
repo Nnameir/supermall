@@ -41,4 +41,10 @@ const router = new VueRouter({
   // mode: 'history'
 });
 
+router.beforeEach((to, from, next) => {
+  // 清除 toast 当前状态
+  Vue.prototype.$toast.clearToast();
+  next();
+});
+
 export default router;
