@@ -1,9 +1,10 @@
 <template>
-  <swiper :is-loaded="isLoaded">
+  <swiper :is-loaded="isLoaded" @click.native="routerLinkClick">
     <swiper-item
       v-for="item in banners"
       :key="item.goods_id"
-      :href-link="item.navigator_url"
+      :navigator-url="item.navigator_url"
+      href-link="javascript:;"
       :image-src="item.image_src"
       @image-loaded="imageLoaded"
     />
@@ -12,13 +13,13 @@
 
 <script>
 /* 导入混入对象 */
-import { swiperMixin } from "common/mixin.js";
+import { swiperMixin, aTagRouterLinkMixin } from "common/mixin.js";
 /* 导入网络请求方法 */
 import { getSwiperData } from "network/home.js";
 
 export default {
   name: "HomeSwiper",
-  mixins: [swiperMixin],
+  mixins: [swiperMixin, aTagRouterLinkMixin],
   data() {
     return {
       banners: [],

@@ -50,7 +50,7 @@ export default {
   mixins: [backTopMixin],
   data() {
     return {
-      goodsId: undefined,
+      query: {},
       goodsSwiperData: [],
       goodsBaseInfo: new GoodsBaseInfo({}),
       goodsInfo: "",
@@ -58,12 +58,12 @@ export default {
     };
   },
   created() {
-    this.goodsId = this.$route.query.goodsId;
+    this.query = this.$route.query;
     this.getGoodsDetail();
   },
   methods: {
     getGoodsDetail() {
-      getGoodsDetail(this.goodsId).then((res) => {
+      getGoodsDetail(this.query).then((res) => {
         const message = res.message;
         this.goodsSwiperData = message.pics;
         this.goodsBaseInfo = new GoodsBaseInfo(message);

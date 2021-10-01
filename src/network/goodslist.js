@@ -1,11 +1,8 @@
 import { request } from './request.js';
 
-export function getGoodsList(cid, pagenum) {
+export function getGoodsList(query) {
   return request({
     url: '/goods/search',
-    params: {
-      cid,
-      pagenum,
-    },
+    params: query,
   });
 };

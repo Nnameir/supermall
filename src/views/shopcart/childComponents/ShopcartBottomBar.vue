@@ -49,7 +49,7 @@ export default {
       this.$store.commit(SELECT_ALL_TOGGLE, isSelect);
     },
     settlementClick() {
-      this.$toast.show("尚无结算页面");
+      this.$toast.show("暂无结算页面");
     },
   },
 };

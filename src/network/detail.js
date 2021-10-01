@@ -1,11 +1,9 @@
 import { request } from './request.js';
 
-export function getGoodsDetail(goodsId) {
+export function getGoodsDetail(query) {
   return request({
     url: '/goods/detail',
-    params: {
-      goods_id: goodsId,
-    },
+    params: query,
   });
 };
 

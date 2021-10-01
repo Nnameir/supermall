@@ -39,7 +39,7 @@ export default {
   mixins: [backTopMixin],
   data() {
     return {
-      cid: 0,
+      query: {},
       pagenum: 0,
       tabControlTitle: ["综合", "销量", "价格"],
       goodsList: [],
@@ -47,13 +47,14 @@ export default {
     };
   },
   created() {
-    this.cid = this.$route.query.cid;
+    this.query = this.$route.query;
     this.updateGoodsList();
   },
   methods: {
     updateGoodsList() {
       this.pagenum++;
-      return getGoodsList(this.cid, this.pagenum).then((res) => {
+      this.query.pagenum = this.pagenum;
+      return getGoodsList(this.query).then((res) => {
         const message = res.message;
         this.goodsList.push(...message.goods);
         this.total = message.total;

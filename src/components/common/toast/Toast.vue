@@ -14,14 +14,13 @@ export default {
     };
   },
   methods: {
-    show(message = this.defaultMsg, duration = 2000) {
+    show(message = this.defaultMsg, duration = 800) {
       if (this.isShow) {
         // 防抖
         clearTimeout(this.toastTimer);
-      } else {
-        this.message = message;
-        this.isShow = true;
       }
+      this.message = message;
+      this.isShow = true;
       this.toastTimer = setTimeout(() => {
         this.hideToast();
       }, duration);

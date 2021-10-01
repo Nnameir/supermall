@@ -1,17 +1,25 @@
 <template>
-  <div id="cate-nav">
-    <a v-for="item in cateItems" :key="item.name" :href="item.navigator_url">
+  <div id="cate-nav" @click="routerLinkClick">
+    <a
+      v-for="item in cateItems"
+      :key="item.name"
+      :navigator-url="item.navigator_url"
+      href="javascript:;"
+    >
       <img :src="item.image_src" alt="" />
     </a>
   </div>
 </template>
 
 <script>
+/* 导入路由跳转混入 */
+import { aTagRouterLinkMixin } from "common/mixin.js";
 /* 导入网络请求方法 */
 import { getCateNavData } from "network/home.js";
 
 export default {
   name: "CateNav",
+  mixins: [aTagRouterLinkMixin],
   data() {
     return {
       cateItems: {},

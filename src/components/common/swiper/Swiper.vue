@@ -80,9 +80,10 @@ export default {
     /* 初始化 swiper, 当图片加载完毕时, 调用该方法 */
     initSwiper() {
       this.insertDom();
-      this.startSwiper();
+      if (this.slideCount > 1) {
+        this.startSwiper();
+      }
     },
-    // 只有一幅slide？
     insertDom() {
       const zhuSwiper = this.$refs.zhuSwiper;
       this.swiperElement = zhuSwiper.querySelector(".swiper");
@@ -91,7 +92,6 @@ export default {
       this.slideCount = tempSwiper.children.length;
       this.slideWidth = tempSwiper.offsetWidth;
       if (this.slideCount > 1) {
-        // 只有一幅slide？
         const firstSlide = tempSwiper.firstElementChild;
         const firstSlideCopy = firstSlide.cloneNode(true);
         const lastSlideCopy = tempSwiper.lastElementChild.cloneNode(true);
@@ -143,7 +143,7 @@ export default {
     },
     /* 触摸事件 */
     touchEventHandlers(event) {
-      if (this.scrolling) {
+      if (this.scrolling || this.slideCount <= 1) {
         return;
       }
       this[event.type + "Handler"](event);

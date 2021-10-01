@@ -1,12 +1,13 @@
 <template>
   <div class="floor">
     <img class="floor-title" :src="floorTitle.image_src" alt="" />
-    <div class="floor-grid-container">
+    <div class="floor-grid-container" @click="routerLinkClick">
       <a
         class="floor-grid-item"
         v-for="item in productList"
         :key="item.name"
-        :href="item.navigator_url"
+        :navigator-url="item.navigator_url"
+        href="javascript:;"
       >
         <img :src="item.image_src" alt="" />
       </a>
@@ -15,8 +16,12 @@
 </template>
 
 <script>
+/* 导入路由跳转混入 */
+import { aTagRouterLinkMixin } from "common/mixin.js";
+
 export default {
   name: "FloorItem",
+  mixins: [aTagRouterLinkMixin],
   props: {
     floorTitle: {
       type: Object,
